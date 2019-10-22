@@ -1,4 +1,7 @@
-import { ADD_FEATURE } from '../actions/actions'
+import { 
+    ADD_FEATURE,
+    REMOVE_FEATURE 
+} from '../actions/actions'
 
 const initialState = {
     additionalPrice: 0,
@@ -18,6 +21,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+    let updatedFeatures = []
     switch (action.type) {
         case ADD_FEATURE:
             return {
@@ -25,6 +29,15 @@ const reducer = (state = initialState, action) => {
                 car: {
                     ...state.car,
                     features: [...state.car.features, action.payload]
+                }
+            }
+        case REMOVE_FEATURE:
+            updatedFeatures = state.car.features.filter(feature => feature.name !== action.payload)
+            return {
+                ...state,
+                car: {
+                    ...state.car,
+                    features: updatedFeatures
                 }
             }
         default: 
