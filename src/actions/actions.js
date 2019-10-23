@@ -11,7 +11,7 @@ const addFeature = feature => {
 const removeFeature = feature => {
     return {
         type: REMOVE_FEATURE,
-        payload: feature.name
+        payload: feature
     }
 };
 
